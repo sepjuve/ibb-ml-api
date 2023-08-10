@@ -6,7 +6,11 @@ import nltk
 nltk.download('stopwords')
 nltk.download('punkt')
 
-app = FastAPI()
+app = FastAPI( 
+    title="IBB ML API",
+    description="Indobara Machine Learning API",
+    version="0.0.1" )
+
 model = TicketGroupModel()
 
 @app.get("/")
