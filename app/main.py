@@ -9,7 +9,7 @@ nltk.download('punkt')
 app = FastAPI( 
     title="IBB ML API",
     description="Indobara Machine Learning API",
-    version="0.0.1" )
+    version="0.1.0" )
 
 model = TicketGroupModel()
 

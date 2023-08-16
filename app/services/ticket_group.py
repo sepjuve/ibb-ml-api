@@ -2,7 +2,6 @@ from loguru import logger
 import numpy as np
 import pandas as pd
 import pickle, os
-from core.config import DEFAULT_MODEL_PATH
 
 class TicketGroupModel(object):    
     text = ""
@@ -14,7 +13,7 @@ class TicketGroupModel(object):
 
     def _load_local_model(self):
         logger.debug("Load model..")
-        self.model = pickle.load(open(DEFAULT_MODEL_PATH + "model_logistic_reg.pkl", "rb"))
+        self.model = pickle.load(open("ml_models/ticket_group.pkl", "rb"))
 
 
     def predict_once(self):
