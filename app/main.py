@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from models.item import Item
-from services.ticket_group import TicketGroupModel
+from services.ticket_group import TicketGroupServices
 
 import nltk
 nltk.download('stopwords')
@@ -11,14 +11,14 @@ app = FastAPI(
     description="Indobara Machine Learning API",
     version="0.1.0" )
 
-model = TicketGroupModel()
+model = TicketGroupServices()
 
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/ticket-group/")
+@app.get("/ticket-group/")
 def predict_ticket(title: str):    
     model.text = title
     predict = model.predict_once()
