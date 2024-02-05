@@ -1,6 +1,10 @@
 from fastapi import FastAPI
 from models.item import Item
 from services.ticket_group import TicketGroupServices
+from starlette.config import Config
+
+config = Config(".ver")
+VERSION: str = config("VERSION")
 
 import nltk
 nltk.download('stopwords')
@@ -9,7 +13,7 @@ nltk.download('punkt')
 app = FastAPI( 
     title="IBB ML API",
     description="Indobara Machine Learning API",
-    version="0.1.0" )
+    version=VERSION)
 
 model = TicketGroupServices()
 
@@ -19,7 +23,7 @@ def read_root():
 
 
 @app.get("/ticket-group/")
-def predict_ticket(title: str):    
+def predict_ticket(title: str):
     model.text = title
     predict = model.predict_once()
     result = {
